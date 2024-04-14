@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org">
+<head>
+    <title>Pokemolist</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+</head>
+<body>
+    <h1>Pokemonlist</h1>
+    <table>
+        <tbody>
+            <tr th:each="pokemon : ${pokemons}">
+                <td th:text="${pokemon.name}"></td>
+                <td th:text="${pokemon.type}"></td>
+                <td th:text="${pokemon.weight}"></td>
+                <td th:text="${pokemon.height}"></td>
+                <td th:text="${pokemon.gender}"></td>
+                <td th:text="${pokemon.number}"></td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+</html>
+
+
+
+
+

@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Thymeleaf Template</title>
+</head>
+<body>
+
+    <h1 th:text="'Tervetuloa, ' + ${name} + '!'">Tervetuloa, kävijä!</h1>
+
+    <p th:if="${isAdmin}">Olet admin-käyttäjä.</p>
+
+</body>
+</html>
