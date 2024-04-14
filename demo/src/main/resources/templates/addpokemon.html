@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns="http://www.thymeleaf.org">
+<head>
+    <title>Add Pokemon</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+</head>
+<body>
+    <h1>Add Pokemon to your Pokedex</h1>
+    <form action="#" th:action="@{/save}" th:object="${pokemon}" method="post">
+        Name: <input type="text" th:field="*{name}"/><br/>
+        Gender: <input type="text" th:field="*{gender}"/><br/>
+        Weight: <input type="text" th:field="*{weight}"/><br/>
+        Height: <input type="text" th:field="*{height}"/><br/>
+        Cp: <input type="text" th:field="*{number}"/><br/>
+        Type:
+        <select name="type" th:field="*{type}">
+            <option value="electric">Electric</option>
+            <option value="fire">Fire</option>
+            <option value="water">Water</option>
+            <option value="normal">Normal</option>
+            <option value="fighting">Fighting</option>
+            <option value="rass">Grass</option>
+            <option value="flying">Flying</option>
+            <option value="poison">Poison</option>
+            <option value="rock">Rock</option>
+            <option value="psychic">psychic</option>
+            <option value="ice">Ice</option>¨
+            <option value="steel">Steel</option>
+            <option value="bug">Bug</option>
+            <option value="dragon">Dragon</option>
+            <option value="dark">dark</option>
+            <option value="fairy">Fairy</option>
+            <input type="submit" value="Save"/> 
+
+            
+          
+        </select><br/>
+    </form>
+</body>
+</html>
