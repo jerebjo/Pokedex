@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Capture Details</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+</head>
+<body>
+    <div class="container">
+        <h1 style="color: red;">Edit Capture Details</h1>
+        <form th:action="@{/editcapture/{id}/edit(id=${pokemon.id})}" method="post">
+            <div class="form-group">
+                <label for="location">Location:</label>
+                <input type="text" class="form-control" id="location" name="location" th:value="*{location}">
+            </div>
+            <div class="form-group">
+                <label for="pokeballsUsed">Pokeballs Used:</label>
+                <select class="form-control" id="pokeballsUsed" name="pokeballsUsed" th:value="*{pokeballsUsed}">
+                    <option th:each="i: ${#numbers.sequence(1, 20)}" th:value="${i}" th:text="${i}"></option>
+                </select>
+            </div>
+            <button type="submit" class="btn btn-primary">Save</button>
+        </form>
+        <a href="/pokemonlist" class="btn btn-primary">Back to Pokedex</a>
+    </div>
+</body>
+</html>

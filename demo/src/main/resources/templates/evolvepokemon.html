@@ -1,14 +1,15 @@
 <!DOCTYPE html>
 <html xmlns="http://www.thymeleaf.org">
 <head>
-    <title>Add Pokemon</title>
+    <title>Evolve Pokemon</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
 </head>
 <body>
     <div class="container">
-        <h1 style="color: red;">Add a new Pokemon to your Pokedex</h1>
-        <form action="#" th:action="@{/save}" th:object="${pokemon}" method="post">
+        <h1 style="color: red;">Evolve your Pokemon</h1>
+        <form th:action="@{/evolve}" th:object="${pokemon}" method="post">
+            <input type="hidden" name="id" th:value="${pokemon.id}" />
             <div class="form-group">
                 <label for="name">Name:</label>
                 <input type="text" class="form-control" id="name" th:field="*{name}">
@@ -31,12 +32,11 @@
             </div>
             <div class="form-group">
                 <label for="type">Type:</label>
-                <select class="form-control" id="type" name="type" th:field="*{type}">
+                <select class="form-control" id="type" name="type" th:field="*{type.id}">
                     <option th:each="type : ${types}" th:value="${type.id}" th:text="${type.name}"></option>
                 </select>
             </div>
-            <button type="submit" class="btn btn-success">Save</button>
-
+            <button type="submit" class="btn btn-success">Evolve</button>
         </form>
     </div>
 </body>

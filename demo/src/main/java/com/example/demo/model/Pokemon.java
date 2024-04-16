@@ -1,9 +1,15 @@
+// Pokemon.java
 package com.example.demo.model;
 
+import java.util.List;
+
+import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
-import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 
 @Entity
 public class Pokemon {
@@ -11,14 +17,22 @@ public class Pokemon {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
-    private String name, type, weight, height, gender;
-    private int number; // Changed variable name from 'cp' to 'number'
+    private String name, weight, height, gender;
+    private int number;
+    private String location;
+    private int pokeballsUsed; // Lisätään pokeballsUsed-kenttä
+
+    @OneToMany(mappedBy = "pokemon")
+    private List<CaptureDetails> captureDetailsList;
+
+    @ManyToOne
+    @JoinColumn(name = "typeid")
+    private PokemonType type;
 
     public Pokemon() {
-
     }
 
-    public Pokemon(String name, String type, String weight, String height, String gender, int number) {
+    public Pokemon(String name, PokemonType type, String weight, String height, String gender, int number) {
         this.name = name;
         this.type = type;
         this.weight = weight;
@@ -43,11 +57,11 @@ public class Pokemon {
         this.name = name;
     }
 
-    public String getType() {
+    public PokemonType getType() {
         return type;
     }
 
-    public void setType(String type) {
+    public void setType(PokemonType type) {
         this.type = type;
     }
 
@@ -83,7 +97,19 @@ public class Pokemon {
         this.number = number;
     }
 
-    // Getters and setters
-    // Omitted for brevity
+    public String getLocation() {
+        return location;
+    }
 
+    public void setLocation(String location) {
+        this.location = location;
+    }
+
+    public int getPokeballsUsed() {
+        return pokeballsUsed;
+    }
+
+    public void setPokeballsUsed(int pokeballsUsed) {
+        this.pokeballsUsed = pokeballsUsed;
+    }
 }

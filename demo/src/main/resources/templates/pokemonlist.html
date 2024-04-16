@@ -3,36 +3,45 @@
 <head>
     <title>Pokemolist</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
 </head>
 <body>
-    <h1>Pokemonlist</h1>
-    <table>
-        <tr>
-            <th>Name</th>
-            <th>Type</th>
-            <th>Weight</th>
-            <th>Height</th>
-            <th>Gender</th>
-            <th>Cp</th>
-            
-        </tr>
-        <tbody>
-            <tr th:each="pokemon : ${pokemons}">
-                <td th:text="${pokemon.name}"></td>
-                <td th:text="${pokemon.type}"></td>
-                <td th:text="${pokemon.weight}"></td>
-                <td th:text="${pokemon.height}"></td>
-                <td th:text="${pokemon.gender}"></td>
-                <td th:text="${pokemon.number}"></td>
-                <td><a th:href="@{/delete/{id}(id=${pokemon.id})}">Delete</a></td>
-            </tr>
-        </tbody>
-    </table>
-    <a href="/add" class="btn btn-primary">Add Pokemon</a>
+    <div class="container">
+        <h1 style="color: red;">Pokedex</h1>
+
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Type</th>
+                    <th>Weight</th>
+                    <th>Height</th>
+                    <th>Gender</th>
+                    <th>Cp</th>
+                    <th>Capture details</th>
+                    <th>Update Evolution</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="pokemon : ${pokemons}">
+                    <td th:text="${pokemon.name}"></td>
+                    <td th:text="${pokemon.type.name}"></td>
+                    <td th:text="${pokemon.weight}"></td>
+                    <td th:text="${pokemon.height}"></td>
+                    <td th:text="${pokemon.gender}"></td>
+                    <td th:text="${pokemon.number}"></td>
+                    <td><a class="btn btn-info" th:href="@{'/pokemonhabitat/' + ${pokemon.id}}">Capture Details</a></td>
+                    <td><a class="btn btn-warning" th:href="@{'/evolve/' + ${pokemon.id}}">Evolve</a></td>
+                    <td><a class="btn btn-danger" th:href="@{/delete/{id}(id=${pokemon.id})}">Delete</a></td>
+                     
+                </tr>
+            </tbody>
+        </table>
+        <a href="/addpokemon" class="btn btn-primary">Add Pokemon</a>
+    </div>
 </body>
 </html>
-
-
 
 
 
