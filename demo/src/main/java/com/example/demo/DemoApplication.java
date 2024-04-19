@@ -9,6 +9,8 @@ import com.example.demo.model.PokeRepository;
 import com.example.demo.model.Pokemon;
 import com.example.demo.model.PokemonType;
 import com.example.demo.model.PokemonTypeRepository;
+import com.example.demo.model.User;
+import com.example.demo.model.UserRepository;
 
 @SpringBootApplication
 public class DemoApplication {
@@ -18,7 +20,8 @@ public class DemoApplication {
 	}
 
 	@Bean
-	public CommandLineRunner demo(PokeRepository repository, PokemonTypeRepository typeRepository) {
+	public CommandLineRunner demo(PokeRepository repository, PokemonTypeRepository typeRepository,
+			UserRepository userRepository) {
 		return (args) -> {
 			// Luo ja tallenna PokemonType-oliot
 			PokemonType electric = new PokemonType("Electric");
@@ -79,6 +82,11 @@ public class DemoApplication {
 			Pokemon p1 = new Pokemon("Pikachu", electric, "20kg", "70cm", "male", 729);
 			Pokemon p2 = new Pokemon("Totodile", water, "25kg", "75cm", "male", 832);
 
+			User user1 = new User("user", "$2a$10$kfeF6bvFg3rt5W4/tYl6a.nsCVopvchyEaAstv61y8DpPpV9v8L2O", "USER");
+			User user2 = new User("admin", "$2a$10$vze8DfEM89X0zuy1Qfl4TuiT1BOAmzd5v5anTbiOT3jpVFyM0BfW2", "ADMIN");
+
+			userRepository.save(user1);
+			userRepository.save(user2);
 			// Tallennetaan Pokemon-oliot tietokantaan
 			repository.save(p1);
 			repository.save(p2);
