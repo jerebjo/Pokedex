@@ -8,7 +8,12 @@
 <body>
     <div class="container">
         <h1 style="color: red;">Pokedex</h1>
-        <form th:action="@{/logout}" method="post" style="display: inline;">
+        <form th:action="@{/login}" method="post" th:if="${#authorization.expression('isAnonymous()')}">
+            <input type="text" name="username" placeholder="Username">
+            <input type="password" name="password" placeholder="Password">
+            <input type="submit" value="Login">
+        </form>
+        <form sec:authorize="hasAnyAuthority('ADMIN', 'USER')" th:action="@{/logout}" method="post" style="display: inline;">
             <input type="submit" value="Sign Out" class="btn btn-link"/>
         </form>
 
@@ -35,13 +40,13 @@
                     <td th:text="${pokemon.gender}"></td>
                     <td th:text="${pokemon.number}"></td>
                     <td><a class="btn btn-info" th:href="@{'/pokemonhabitat/' + ${pokemon.id}}">Capture Details</a></td>
-                    <td><a class="btn btn-warning" th:href="@{'/evolve/' + ${pokemon.id}}">Evolve</a></td>
-                    <td><a class="btn btn-danger" th:href="@{/delete/{id}(id=${pokemon.id})}">Delete</a></td>
+                    <td sec:authorize="hasAnyAuthority('ADMIN', 'USER')"><a class="btn btn-warning" th:href="@{'/evolve/' + ${pokemon.id}}">Evolve</a></td>
+                    <td sec:authorize="hasAuthority('ADMIN')"><a class="btn btn-danger" th:href="@{/delete/{id}(id=${pokemon.id})}">Delete</a></td>
                      
                 </tr>
             </tbody>
         </table>
-        <a href="/addpokemon" class="btn btn-primary">Add Pokemon</a>
+        <td sec:authorize="hasAnyAuthority('ADMIN', 'USER')"><a href="/addpokemon" class="btn btn-primary">Add Pokemon</a></td>
     </div>
 </body>
 </html>

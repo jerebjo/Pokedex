@@ -23,14 +23,29 @@ public class WebSecurityConfig {
     public SecurityFilterChain configure(HttpSecurity http) throws Exception {
         http
                 .authorizeHttpRequests(authorize -> authorize
-                        .requestMatchers(antMatcher("/css/**")).permitAll() // Enable css when logged out
-                        .anyRequest().authenticated())
-                .formLogin(formlogin -> formlogin
-                        // .loginPage("/login")
+                        .requestMatchers(
+                                antMatcher("/css/"),
+                                antMatcher("/signup"),
+                                antMatcher("/"),
+                                antMatcher("/pokemonlist"),
+                                antMatcher("/pokemonhabitat/**"))
                         .permitAll()
+                        .requestMatchers(
+                                antMatcher("/addpokemon/"),
+                                antMatcher("/evolvepokemon/**"),
+                                antMatcher("/delete/"),
+                                antMatcher("/editcapture/**"))
+                        .authenticated()
+                        .anyRequest().authenticated())
+                .headers(headers -> headers.frameOptions(frameOptions -> frameOptions
+                        .disable()))
+                .formLogin(formlogin -> formlogin
+                        .loginPage("/login")
                         .permitAll())
                 .logout(logout -> logout
+                        .logoutSuccessUrl("/pokemonlist")
                         .permitAll());
+
         return http.build();
     }
 

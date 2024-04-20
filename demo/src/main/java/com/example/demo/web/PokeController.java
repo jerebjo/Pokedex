@@ -25,6 +25,11 @@ public class PokeController {
     @Autowired
     private PokemonTypeRepository PokemonTypeRepository;
 
+    @RequestMapping(value = "/login")
+    public String login() {
+        return "login";
+    }
+
     @RequestMapping(value = { "/", "/pokemonlist" })
     public String pokemonList(Model model) {
         model.addAttribute("pokemons", repository.findAll());

@@ -1,8 +1,7 @@
 package com.example.demo.model;
 
-import org.springframework.data.repository.CrudRepository;
-import org.springframework.stereotype.Repository;
+import org.springframework.data.jpa.repository.JpaRepository;
 
-@Repository
-public interface PokeRepository extends CrudRepository<Pokemon, Long> {
+public interface PokeRepository extends JpaRepository<Pokemon, Long> {
+    Pokemon findByName(String name);
 }

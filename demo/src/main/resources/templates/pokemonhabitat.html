@@ -21,7 +21,7 @@
         
         </form>
         
-        <a th:href="@{/editcapture/{id}/edit(id=${pokemon.id})}" class="btn btn-primary">Edit Capture Details</a>
+        <td sec:authorize="hasAnyAuthority('ADMIN', 'USER')"><a th:href="@{/editcapture/{id}/edit(id=${pokemon.id})}" class="btn btn-primary">Edit Capture Details</a></td>
 
 
 
