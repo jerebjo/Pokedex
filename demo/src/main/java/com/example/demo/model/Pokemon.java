@@ -30,6 +30,7 @@ public class Pokemon {
     private PokemonType type;
 
     public Pokemon() {
+        // Tarvittaessa toteutetaan tyhjä konstruktori
     }
 
     public Pokemon(String name, PokemonType type, String weight, String height, String gender, int number) {
